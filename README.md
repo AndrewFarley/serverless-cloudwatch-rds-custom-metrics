@@ -1,6 +1,6 @@
 # CloudWatch RDS Custom Metrics
 
-**Found at:** https://github.com/AndrewFarley/ pu
+**Found at:** https://github.com/AndrewFarley/serverless-cloudwatch-rds-custom-metrics
 ## Author
 * Farley
   * farley _at_ **olindata**  _dot_ com   _OR_
