@@ -1,7 +1,6 @@
 # CloudWatch RDS Custom Metrics
 
-**Found at:** https://github.com/AndrewFarley/serverless-cloudwatch-rds-custom-metrics
-
+**Found at:** https://github.com/AndrewFarley/ pu
 ## Author
 * Farley
   * farley _at_ **olindata**  _dot_ com   _OR_
@@ -47,7 +46,7 @@
 
 * If that works, then everything should be working already, because it also deployed the lambda push-to-cloudwatch which is scheduled to run every minute in serverless.yml via CloudWatch Events.
 
-* To verify this is running correctly, please check CloudWatch Metrics to see if your custom metrics are posted, they should show up immediately (within' a minute).  If they are not there, use CloudWatch Logs to debug why it is failing, which could be a failing query, invalid MySQL credentials, wrong VPC, or more.  CloudWatch logs should tell you immediately though.  If successful, you should see something similar to the image below in your AWS Dashboard.
+* To verify this is running correctly, please check CloudWatch Metrics to see if your custom metrics are posted, they should show up immediately (within' a minute).  If they are not there, try invoking this method manually with ```serverless invoke -f push-to-cloudwatch --log``` to debug why it is failing, which could be a failing query, invalid MySQL credentials, wrong VPC, or more.  CloudWatch logs should tell you immediately.  When this runs successfully, you should see something similar to the image below in your AWS Dashboard.
 
 ![Custom RDS Metrics in Cloudwatch](screenshots/custom-rds-metrics-in-cloudwatch.png)
 
