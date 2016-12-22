@@ -26,7 +26,7 @@
 
 * Make sure to have NodeJS installed and run ```npm install``` in this folder to grab the bluebird and mysql packages
 
-* Edit the file ```serverless.yml``` and put your region (in the provider section) and fill out the security group and subnet ids of your VPC in which your RDS server lives in that region.  **NOTE:** There is a bug in serverless 1.2 or less which gives errors about _CreateNetworkInterface_ when your first deploy has a function in a custom VPC.  You may need to comment the entire VPC block out at first to get it to deploy at least once successfully, and then uncomment it and re-deploy.  Please see [merge](https://github.com/serverless/serverless/pull/2743) and [bug](https://github.com/serverless/serverless/issues/2780) and [bug](https://github.com/serverless/serverless/issues/2683).
+* Edit the file ```serverless.yml``` and put your region (in the provider section) and fill out the security group and subnet ids of your VPC in which your RDS server lives in that region.
 
 ![Serverless.yml VPC Configuration](screenshots/serverless-yml-vpc-configuration.png)
 
@@ -39,13 +39,15 @@
 
 * Once you've got things configured, try deploying and invoking the mysql function with: ```serverless deploy && serverless invoke -f gather-mysql-stats-from-rds --log```
 
+  * **WARNING:** There is a bug in serverless 1.2 or less which gives errors about _CreateNetworkInterface_ when your first deploy has a function in a custom VPC.  You may need to comment the entire VPC block out at first to get it to deploy at least once successfully, and then uncomment it and re-deploy.  Please see [merge](https://github.com/serverless/serverless/pull/2743) and [bug](https://github.com/serverless/serverless/issues/2780) and [bug](https://github.com/serverless/serverless/issues/2683).
+
 * You should see something like this (of course, with your queries instead)
 
 ![Gather MySQL Stats First Run Screenshot](screenshots/gather-mysql-stats-from-rds.png)
 
 * If that works, then everything should be working already, because it also deployed the lambda push-to-cloudwatch which is scheduled to run every minute in serverless.yml via CloudWatch Events.
 
-* To verify this is running correctly, please check CloudWatch Metrics to see if your custom metrics are posted, they should show up immediately (within' a minute).  If they are not there, use CloudWatch Logs to debug why it is failing, which could be a failing query, invalid MySQL credentials, wrong VPC, or more.  CloudWatch logs should tell you immediately though.  You should see something similar to the image below in your AWS Dashboard.
+* To verify this is running correctly, please check CloudWatch Metrics to see if your custom metrics are posted, they should show up immediately (within' a minute).  If they are not there, use CloudWatch Logs to debug why it is failing, which could be a failing query, invalid MySQL credentials, wrong VPC, or more.  CloudWatch logs should tell you immediately though.  If successful, you should see something similar to the image below in your AWS Dashboard.
 
 ![Custom RDS Metrics in Cloudwatch](screenshots/custom-rds-metrics-in-cloudwatch.png)
 
