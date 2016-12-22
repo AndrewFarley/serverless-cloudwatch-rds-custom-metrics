@@ -1,4 +1,4 @@
-service: cloudwatch-rds-custom-metrics
+service: serverless-cloudwatch-rds-custom-metrics
 
 package:
   exclude:

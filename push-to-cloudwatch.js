@@ -8,7 +8,7 @@
  *
  * @summary   A NodeJS-based Custom CloudWatch Metric script using data from another Lambda
  *
- * @link      https://github.com/AndrewFarley/cloudwatch-rds-custom-metrics-serverless
+ * @link      https://github.com/AndrewFarley/serverless-cloudwatch-rds-custom-metrics
  * @requires  aws-sdk
  * @author    Farley <farley@neonsurge.com> <farley@olindata.com>
  * @license   MIT
@@ -30,7 +30,7 @@ exports.handler = function(event, context, callback) {
   // Then lets call our Lambda that is in our VPC to get data from RDS to put into cloudwatch
   lambda.invoke({
     // TODO Get service name here?
-    FunctionName: 'cloudwatch-rds-custom-metrics-demo-gather-mysql-stats-from-rds',
+    FunctionName: 'serverless-cloudwatch-rds-custom-metrics-demo-gather-mysql-stats-from-rds',
     Payload: JSON.stringify(event, null, 2),
   }, function(error, data) {
     if (error) {

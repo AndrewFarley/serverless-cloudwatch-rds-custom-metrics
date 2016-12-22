@@ -22,7 +22,7 @@
  *
  * @summary   A NodeJS-based MySQL RDS Data Collection script for AWS Lambda
  *
- * @link      https://github.com/AndrewFarley/cloudwatch-rds-custom-metrics-serverless
+ * @link      https://github.com/AndrewFarley/serverless-cloudwatch-rds-custom-metrics
  * @requires  mysql
  * @requires  bluebird
  * @author    Farley <farley@neonsurge.com> <farley@olindata.com>

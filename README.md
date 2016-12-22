@@ -1,6 +1,6 @@
 # CloudWatch RDS Custom Metrics
 
-**Found at:** https://github.com/AndrewFarley/cloudwatch-rds-custom-metrics-serverless
+**Found at:** https://github.com/AndrewFarley/serverless-cloudwatch-rds-custom-metrics
 
 ## Author
 * Farley
@@ -24,7 +24,7 @@
 
 * Make sure your CLI has a default AWS credentials setup (via ```aws configure```) or that you have chosen a profile and can use the aws CLI properly on your terminal.  Additionally make sure you have NodeJS installed 4.3+ installed on your machine.
 
-* Clone this repository with ```git clone git@github.com:AndrewFarley/cloudwatch-rds-custom-metrics-serverless.git``` then enter the folder with ```cd cloudwatch-rds-custom-metrics-serverless``` and run ```npm install``` to grab the bluebird and mysql packages necessary to run these lambdas.
+* Clone this repository with ```git clone git@github.com:AndrewFarley/serverless-cloudwatch-rds-custom-metrics.git``` then enter the folder with ```cd serverless-cloudwatch-rds-custom-metrics``` and run ```npm install``` to grab the bluebird and mysql packages necessary to run these lambdas.
 
 * Edit the file ```serverless.yml``` and put your region (in the provider section) and fill out the security group and subnet ids of your VPC in which your RDS server lives in that region.
 
