@@ -1,0 +1,19 @@
+{
+  "name": "cloudwatch-rds-custom-metrics",
+  "version": "1.0.0",
+  "description": "A Serverless MySQL RDS Data Collection script to push Custom Metrics to Cloudwatch",
+  "author": "Farley <farley@neonsurge.com> <farley@olindata.com>",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndrewFarley/cloudwatch-rds-custom-metrics-serverless.git"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "mysql": "mysqljs/mysql"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.7.10"
+  }
+}

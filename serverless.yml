@@ -1,0 +1,45 @@
+service: cloudwatch-rds-custom-metrics
+
+package:
+  exclude:
+    - 'old/**'
+    - 's3_files/**'
+    - '*/*.md'
+    - '*/*.json'
+    - '*/*.yml'
+    - 'screenshots/**'
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  memorySize: 128
+  timeout: 10
+  stage: demo
+  cfLogs: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cloudwatch:PutMetricData
+        - lambda:InvokeFunction
+        - ec2:CreateNetworkInterface
+        - ec2:DescribeNetworkInterfaces
+        - ec2:DeleteNetworkInterface
+      Resource: "*"
+  region: us-east-1
+
+functions:
+  gather-mysql-stats-from-rds:
+    handler: gather-mysql-stats-from-rds.handler
+    vpc:
+     securityGroupIds:
+       - sg-ec49d489
+     subnetIds:
+       - subnet-60dedf14
+       - subnet-efa9ebc7
+       - subnet-fb3a18bd
+       - subnet-a61c7a9c
+
+  push-to-cloudwatch:
+    handler: push-to-cloudwatch.handler
+    events:
+       - schedule: rate(1 minute)
