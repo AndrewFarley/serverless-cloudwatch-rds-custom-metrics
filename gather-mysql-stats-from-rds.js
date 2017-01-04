@@ -93,6 +93,11 @@ exports.handler = function(event, context, callback) {
          Unit: row[0].unit,
          Value: row[0].metric
       });
+    }).catch(function(failed_reason) {
+      console.log("ERROR: The following query failed:");
+      console.log(query);
+      console.log("Because:");
+      console.log(failed_reason);
     });
   }).then(function() {
     // Return the data back to our caller

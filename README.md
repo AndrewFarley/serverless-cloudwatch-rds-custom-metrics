@@ -7,10 +7,10 @@
   * farley _at_ **neonsurge** _dot_ com
 
 ## Purpose
-1. Collect custom metric data from an RDS server and push those metrics into cloudwatch.
+1. Collect custom metric (querying data) from an RDS server and push those metrics into CloudWatch Metrics regularly.
+1. Doing this without having to have a server via AWS Lambda and Serverless.
 1. Able to use the custom metrics for creating dashboards to view current and hisorical data easily (see [usage examples](#usage-examples))
-1. Able to use the custom metrics to trigger cloudwatch alarms and autoscaling actions
-1. Doing all of this without having to have a server via AWS Lambda and Serverless.
+1. Able to use the custom metrics to trigger CloudWatch Alarms and AWS AutoScaling actions.
 
 
 ## Prerequisites
@@ -81,7 +81,6 @@
 
 ## Todo List / Known Bugs
 
-1. Catch an invalid/failing query and don't break the whole promise
 1. Define the Lambda called in push-to-cloudwatch dynamically based on the environment name and the stage name
 1. Make a PGSQL version, or expand current version to _somehow_ support both
 1. Make a MSSQL version (based on C# if necessary)
@@ -111,6 +110,12 @@ Simple remove with the serverless remove command
 ```
 serverless remove
 ```
+
+
+## Changelog / Recent Features
+
+* Added an exception handler to catch exceptions in the MySQL queries within' the mapped promises.
+
 
 
 ## Support, Feedback & Questions
