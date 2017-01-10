@@ -66,7 +66,7 @@
 
 **Q:** Why did you do this / what is this for?
 
-**A:** Ever since AWS extended its CloudWatch Metrics to allow for storing 15 months of historical data (as of November 2016) it has removed the need to maintain an additional monitoring system for AWS-based infrastructures for historical data (such as Zabbix/Nagios/Icinga/etc).  And in that paradigm without a physical server that runs our monitoring software, you may not have a non-dynamic server to run custom metrics collection on.  Leveraging Amazon's serverless technologies via Lambda and CloudWatch Events allows us to still gather custom metrics and trigger alarms about subsystem failures and deliver high quality dashboards for ourselves and our clients.
+**A:** Ever since [AWS extended its CloudWatch Metrics to allow for storing 15 months of historical data since November 2016](https://aws.amazon.com/blogs/aws/amazon-cloudwatch-update-extended-metrics-retention-user-interface-update/) it has removed the need to maintain an additional monitoring system for AWS-based infrastructures for historical data (such as Zabbix/Nagios/Icinga/etc).  And in that paradigm without a physical server that runs our monitoring software, you may not have a non-dynamic server to run custom metrics collection on.  Leveraging Amazon's serverless technologies via Lambda and CloudWatch Events allows us to still gather custom metrics and trigger alarms about subsystem failures and deliver high quality dashboards for ourselves and our clients.
 
 
 **Q:** Why do you have two Lambdas instead of just one?
@@ -76,7 +76,9 @@
 
 **Q:** What does all this cost?  Doesn't it cost a lot to run this lambda every minute?
 
-**A:** Lambda is extremely cheap especially if you keep the RAM size down, and the runtime down, which we are doing for both.  The RAM for the Lambda is set to 128 (the smallest) and the runtime in my two installations of this software is 100ms each.  Since there are two Lambdas, this works out to 86400 100ms 128MB Lambda executions (60 min \* 24 hour \* 30 days \* 2 lambdas).  Using the [lambda pricing calculator](https://s3.amazonaws.com/lambda-tools/pricing-calculator.html) calculator, this works out to around $0.04/mo not including some minor data transfer fees.  The larger cost is actually every custom CloudWatch metric costs $0.50, and every CloudWatch Alarm you create costs $0.10/mo.  The piece here that costs is the metrics really, not the alarms or Lambdas.  But compared to running your own server or cluster of servers to maintain this monitoring and historical information will typically be well over the cost of paying for a handful of CloudWatch metrics.
+**A:** Lambda is extremely cheap especially if you keep the RAM size down, and the runtime down, which we are doing for both.  The RAM for the Lambda is set to 128 (the smallest) and the runtime in my two installations of this software is 100ms each.  Since there are two Lambdas, this works out to 86400 100ms 128MB Lambda executions (60 min \* 24 hour \* 30 days \* 2 lambdas).  Using the [lambda pricing calculator](https://s3.amazonaws.com/lambda-tools/pricing-calculator.html) calculator, this works out to around $0.04/mo not including some minor data transfer fees.  The larger cost is actually every custom CloudWatch metric costs $0.50, and every CloudWatch Alarm you create costs $0.10/mo.  The piece here that costs is the metrics really, not the alarms or Lambdas.  But compared to running your own server or cluster of servers to maintain this monitoring and historical information will typically be well over the cost of paying for a handful of CloudWatch metrics.  
+
+**REMINDER** Make sure to keep the queries you run in this extremely slim so you don't lock up your database or cause unnecessary load.  Ideally you should profile (explain analyze) every query you put into this tool to ensure minimal runtime and minimal impact.  
 
 
 ## Todo List / Known Bugs
