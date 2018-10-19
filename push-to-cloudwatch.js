@@ -37,7 +37,7 @@ exports.handler = function(event, context, callback) {
       console.log("caught error");
       return callback( "Error while calling lambda " + JSON.stringify(error), null );
     }
-    if(data.Payload){
+    if (data.Payload) {
       console.log("Received statistic data from MySQL, pushing to cloudwatch...");
       var data_parsed = JSON.parse(data.Payload)
       cloudwatch.putMetricData(data_parsed, function(err, data) {
